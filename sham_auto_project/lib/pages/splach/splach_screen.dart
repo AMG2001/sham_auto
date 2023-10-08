@@ -26,7 +26,6 @@ class SplachScreen extends StatelessWidget {
               Text("Sham Auto")
             ],
           ),
-          // TODO : Add Register || login || Home page here .
           nextScreen: LoginPage(),
           duration: 1500,
           animationDuration: Duration(seconds: 1),
