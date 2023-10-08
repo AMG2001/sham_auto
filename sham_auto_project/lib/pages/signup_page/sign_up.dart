@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sham_auto_project/component/custom_form_field.dart';
-import 'package:sham_auto_project/component/validator_utils.dart';
+import 'package:sham_auto_project/config/component/custom_form_field.dart';
+import 'package:sham_auto_project/config/component/validator_utils.dart';
+import 'package:sham_auto_project/config/routes/app_routes.dart';
 import 'package:sham_auto_project/pages/login_page/login_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -84,7 +86,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               left: 25,
                             ),
                             child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 decoration: BoxDecoration(
                                   color: Colors.grey[200],
                                   border: Border.all(color: Colors.white),
@@ -114,7 +117,8 @@ class _SignUpPageState extends State<SignUpPage> {
                               right: 25,
                             ),
                             child: Container(
-                                padding: const EdgeInsets.symmetric(horizontal: 10),
+                                padding:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 decoration: BoxDecoration(
                                   color: Colors.grey[200],
                                   border: Border.all(color: Colors.white),
@@ -270,10 +274,11 @@ class _SignUpPageState extends State<SignUpPage> {
                               fontWeight: FontWeight.bold,
                               color: Color(0xFF352a49)),
                         ),
-                        InkWell(
+                        GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacementNamed(
-                                context, LoginPage.routeName);
+                            AppRoutes.navigateOffAll(
+                                page: LoginPage(),
+                                transition: Transition.rightToLeft);
                           },
                           child: const Text(
                             ' Login Now',
