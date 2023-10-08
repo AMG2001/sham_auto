@@ -2,7 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_auto_project/config/device/device_dimenssions.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:sham_auto_project/pages/login_page/login_page.dart';
+import 'package:sham_auto_project/pages/login_page/view/login_page.dart';
 
 class SplachScreen extends StatelessWidget {
   const SplachScreen({super.key});

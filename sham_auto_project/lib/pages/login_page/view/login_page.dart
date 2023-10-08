@@ -5,16 +5,11 @@ import 'package:sham_auto_project/config/component/custom_form_field.dart';
 import 'package:sham_auto_project/config/component/validator_utils.dart';
 import 'package:sham_auto_project/config/device/device_dimenssions.dart';
 import 'package:sham_auto_project/config/routes/app_routes.dart';
-import 'package:sham_auto_project/pages/signup_page/sign_up.dart';
+import 'package:sham_auto_project/pages/signup_page/view/sign_up.dart';
 
-class LoginPage extends StatefulWidget {
+class LoginPage extends StatelessWidget {
   static const String routeName = 'loginpage';
 
-  @override
-  State<LoginPage> createState() => _LoginPageState();
-}
-
-class _LoginPageState extends State<LoginPage> {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
@@ -86,37 +81,42 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(
                       height: 12,
                     ),
-                    CustomFormField(
-                      hint: 'Enter your Password',
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Please enter your Password';
-                        }
-                        if (!ValidationRegex.passwordRegex(value)) {
-                          return 'Please enter valid Password';
-                        }
-                        return null;
+                    StatefulBuilder(
+                      builder: (context, setState) {
+                        return CustomFormField(
+                          
+                          hint: 'Enter your Password',
+                          controller: passwordController,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter your Password';
+                            }
+                            if (!ValidationRegex.passwordRegex(value)) {
+                              return 'Please enter valid Password';
+                            }
+                            return null;
+                          },
+                          isPassword: hidePassword,
+                          textInputType: TextInputType.visiblePassword,
+                          suffix: IconButton(
+                            onPressed: () {
+                              if (hidePassword == false) {
+                                hidePassword = true;
+                              } else {
+                                hidePassword = false;
+                              }
+                              setState(() {});
+                            },
+                            icon: hidePassword
+                                ? Icon(
+                                    Icons.visibility,
+                                    color: Colors.grey[500],
+                                  )
+                                : Icon(Icons.visibility_off,
+                                    color: Colors.grey[500]),
+                          ),
+                        );
                       },
-                      isPassword: hidePassword,
-                      textInputType: TextInputType.visiblePassword,
-                      suffix: IconButton(
-                        onPressed: () {
-                          if (hidePassword == false) {
-                            hidePassword = true;
-                          } else {
-                            hidePassword = false;
-                          }
-                          setState(() {});
-                        },
-                        icon: hidePassword
-                            ? Icon(
-                                Icons.visibility,
-                                color: Colors.grey[500],
-                              )
-                            : Icon(Icons.visibility_off,
-                                color: Colors.grey[500]),
-                      ),
                     ),
                     const SizedBox(
                       height: 8,

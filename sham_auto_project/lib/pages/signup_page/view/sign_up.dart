@@ -4,16 +4,9 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:sham_auto_project/config/component/custom_form_field.dart';
 import 'package:sham_auto_project/config/component/validator_utils.dart';
 import 'package:sham_auto_project/config/routes/app_routes.dart';
-import 'package:sham_auto_project/pages/login_page/login_page.dart';
+import 'package:sham_auto_project/pages/login_page/view/login_page.dart';
 
-class SignUpPage extends StatefulWidget {
-  static const String routeName = 'signuppage';
-
-  @override
-  State<SignUpPage> createState() => _SignUpPageState();
-}
-
-class _SignUpPageState extends State<SignUpPage> {
+class SignUpPage extends StatelessWidget {
   TextEditingController emailController = TextEditingController();
 
   TextEditingController passwordController = TextEditingController();
@@ -160,72 +153,80 @@ class _SignUpPageState extends State<SignUpPage> {
                     const SizedBox(
                       height: 12,
                     ),
-                    CustomFormField(
-                      hint: 'Enter your Password',
-                      textInputType: TextInputType.visiblePassword,
-                      controller: passwordController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Please enter your Password';
-                        }
-                        if (!ValidationRegex.passwordRegex(value)) {
-                          return 'Please enter valid Password';
-                        }
-                        return null;
+                    StatefulBuilder(
+                      builder: (context, setState) {
+                        return CustomFormField(
+                          hint: 'Enter your Password',
+                          textInputType: TextInputType.visiblePassword,
+                          controller: passwordController,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter your Password';
+                            }
+                            if (!ValidationRegex.passwordRegex(value)) {
+                              return 'Please enter valid Password';
+                            }
+                            return null;
+                          },
+                          isPassword: hidePassword,
+                          suffix: IconButton(
+                            onPressed: () {
+                              if (hidePassword == false) {
+                                hidePassword = true;
+                              } else {
+                                hidePassword = false;
+                              }
+                              setState(() {});
+                            },
+                            icon: hidePassword
+                                ? Icon(
+                                    Icons.visibility,
+                                    color: Colors.grey[500],
+                                  )
+                                : Icon(Icons.visibility_off,
+                                    color: Colors.grey[500]),
+                          ),
+                        );
                       },
-                      isPassword: hidePassword,
-                      suffix: IconButton(
-                        onPressed: () {
-                          if (hidePassword == false) {
-                            hidePassword = true;
-                          } else {
-                            hidePassword = false;
-                          }
-                          setState(() {});
-                        },
-                        icon: hidePassword
-                            ? Icon(
-                                Icons.visibility,
-                                color: Colors.grey[500],
-                              )
-                            : Icon(Icons.visibility_off,
-                                color: Colors.grey[500]),
-                      ),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
-                    CustomFormField(
-                      hint: 'Please Confirm your Password',
-                      textInputType: TextInputType.visiblePassword,
-                      controller: confirmPasswordController,
-                      validator: (value) {
-                        if (value == null || value.trim().isEmpty) {
-                          return 'Please enter your Password';
-                        }
-                        if (!ValidationRegex.passwordRegex(value)) {
-                          return 'Please enter valid Password';
-                        }
-                        return null;
+                    StatefulBuilder(
+                      builder: (context, setState) {
+                        return CustomFormField(
+                          hint: 'Please Confirm your Password',
+                          textInputType: TextInputType.visiblePassword,
+                          controller: confirmPasswordController,
+                          validator: (value) {
+                            if (value == null || value.trim().isEmpty) {
+                              return 'Please enter your Password';
+                            }
+                            if (!ValidationRegex.passwordRegex(value)) {
+                              return 'Please enter valid Password';
+                            }
+                            return null;
+                          },
+                          isPassword: hidePassword,
+                          suffix: IconButton(
+                            onPressed: () {
+                              if (hideConfirmPassword == false) {
+                                hideConfirmPassword = true;
+                              } else {
+                                hideConfirmPassword = false;
+                              }
+                              setState(() {});
+                            },
+                            icon: hideConfirmPassword
+                                ? Icon(
+                                    Icons.visibility,
+                                    color: Colors.grey[500],
+                                  )
+                                : Icon(Icons.visibility_off,
+                                    color: Colors.grey[500]),
+                          ),
+                        );
                       },
-                      isPassword: hidePassword,
-                      suffix: IconButton(
-                        onPressed: () {
-                          if (hideConfirmPassword == false) {
-                            hideConfirmPassword = true;
-                          } else {
-                            hideConfirmPassword = false;
-                          }
-                          setState(() {});
-                        },
-                        icon: hideConfirmPassword
-                            ? Icon(
-                                Icons.visibility,
-                                color: Colors.grey[500],
-                              )
-                            : Icon(Icons.visibility_off,
-                                color: Colors.grey[500]),
-                      ),
                     ),
                     const SizedBox(
                       height: 8,

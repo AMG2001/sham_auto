@@ -33,6 +33,12 @@ class CustomFormField extends StatelessWidget {
           borderRadius: BorderRadius.circular(12),
         ),
         child: TextFormField(
+          /**
+           * if You tapped outside , then close the Keyboard .
+           */
+          onTapOutside: (event) {
+            FocusManager.instance.primaryFocus!.unfocus();
+          },
           obscureText: isPassword,
           controller: controller,
           keyboardType: textInputType,

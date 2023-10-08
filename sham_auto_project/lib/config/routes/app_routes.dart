@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:sham_auto_project/pages/home/view/home_page.dart';
-import 'package:sham_auto_project/pages/login_page/login_page.dart';
-import 'package:sham_auto_project/pages/signup_page/sign_up.dart';
+import 'package:sham_auto_project/pages/login_page/view/login_page.dart';
+import 'package:sham_auto_project/pages/signup_page/view/sign_up.dart';
 
 class AppRoutes {
   static String homePage = "/homePage";
