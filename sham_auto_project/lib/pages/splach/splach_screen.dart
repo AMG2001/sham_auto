@@ -2,6 +2,7 @@ import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:sham_auto_project/config/device/device_dimenssions.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:sham_auto_project/pages/login_page/login_page.dart';
 
 class SplachScreen extends StatelessWidget {
   const SplachScreen({super.key});
@@ -26,11 +27,7 @@ class SplachScreen extends StatelessWidget {
             ],
           ),
           // TODO : Add Register || login || Home page here .
-          nextScreen: Scaffold(
-            body: Center(
-              child: Text("Home Page"),
-            ),
-          ),
+          nextScreen: LoginPage(),
           duration: 1500,
           animationDuration: Duration(seconds: 1),
           curve: Curves.easeInOutCubic,
