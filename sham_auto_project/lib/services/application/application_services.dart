@@ -1,4 +1,4 @@
-import 'package:sham_auto_project/services/mongodb/mongo_main_controller.dart';
+import 'package:sham_auto_project/services/mongodb/app/mongo_main_controller.dart';
 
 class ApplicationServices {
   ApplicationServices._privateConstructor();

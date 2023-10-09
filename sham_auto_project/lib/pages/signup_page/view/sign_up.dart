@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:sham_auto_project/config/component/custom_form_field.dart';
-import 'package:sham_auto_project/config/component/validator_utils.dart';
+import 'package:sham_auto_project/config/components/custom_form_field.dart';
+import 'package:sham_auto_project/config/components/validator_utils.dart';
 import 'package:sham_auto_project/config/routes/app_routes.dart';
 import 'package:sham_auto_project/pages/login_page/view/login_page.dart';
 
