@@ -83,8 +83,7 @@ class LoginPage extends StatelessWidget {
                     ),
                     StatefulBuilder(
                       builder: (context, setState) {
-                        return CustomFormField(
-                          
+                        return CustomFormField(       
                           hint: 'Enter your Password',
                           controller: passwordController,
                           validator: (value) {
