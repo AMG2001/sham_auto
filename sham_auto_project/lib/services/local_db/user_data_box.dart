@@ -126,6 +126,8 @@ class UserDataBox {
   }
 
   Future<void> put_allUserData({required UserDataModel userDataModel}) async {
+    put_firstName(firstName: userDataModel.firstName);
+    put_lastName(lastName: userDataModel.lastName);
     put_userName(userName: userDataModel.name);
     put_password(password: userDataModel.password);
     put_userEmail(email: userDataModel.email);
@@ -163,6 +165,8 @@ class UserDataBox {
 
   void userLoggedOut() {
     put_userName(userName: "");
+    put_firstName(firstName: '');
+    put_lastName(lastName: "");
     put_userEmail(email: "");
     put_password(password: "");
     put_userPhoneNumber(phoneNumber: "");

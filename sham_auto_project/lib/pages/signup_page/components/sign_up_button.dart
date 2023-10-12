@@ -11,7 +11,9 @@ class SignUpButton extends StatelessWidget {
     return GetBuilder<SignupController>(
       builder: (controller) {
         return InkWell(
-          onTap: () {},
+          onTap: () async {
+            await controller.registerNewUser();
+          },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 25),
             width: double.infinity,

@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:sham_auto_project/config/device/device_dimenssions.dart';
-import 'package:sham_auto_project/pages/login_page/component/create_account_row.dart';
-import 'package:sham_auto_project/pages/login_page/component/email_tf_login.dart';
-import 'package:sham_auto_project/pages/login_page/component/login_header.dart';
-import 'package:sham_auto_project/pages/login_page/component/loginin_button.dart';
-import 'package:sham_auto_project/pages/login_page/component/password_tf_login.dart';
-import 'package:sham_auto_project/pages/login_page/component/recovery_password.dart';
+import 'package:sham_auto_project/pages/login_page/components/create_account_row.dart';
+import 'package:sham_auto_project/pages/login_page/components/email_tf_login.dart';
+import 'package:sham_auto_project/pages/login_page/components/login_header.dart';
+import 'package:sham_auto_project/pages/login_page/components/loginin_button.dart';
+import 'package:sham_auto_project/pages/login_page/components/password_tf_login.dart';
+import 'package:sham_auto_project/pages/login_page/components/recovery_password.dart';
 import 'package:sham_auto_project/pages/login_page/controller/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
