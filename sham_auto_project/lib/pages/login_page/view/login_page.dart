@@ -1,214 +1,70 @@
 import 'package:flutter/material.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:sham_auto_project/config/components/custom_form_field.dart';
-import 'package:sham_auto_project/config/components/validator_utils.dart';
+import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:sham_auto_project/config/device/device_dimenssions.dart';
-import 'package:sham_auto_project/config/routes/app_routes.dart';
-import 'package:sham_auto_project/pages/signup_page/view/sign_up.dart';
+import 'package:sham_auto_project/pages/login_page/component/create_account_row.dart';
+import 'package:sham_auto_project/pages/login_page/component/email_tf_login.dart';
+import 'package:sham_auto_project/pages/login_page/component/login_header.dart';
+import 'package:sham_auto_project/pages/login_page/component/loginin_button.dart';
+import 'package:sham_auto_project/pages/login_page/component/password_tf_login.dart';
+import 'package:sham_auto_project/pages/login_page/component/recovery_password.dart';
+import 'package:sham_auto_project/pages/login_page/controller/login_controller.dart';
 
 class LoginPage extends StatelessWidget {
-  static const String routeName = 'loginpage';
 
-  TextEditingController emailController = TextEditingController();
-
-  TextEditingController passwordController = TextEditingController();
-
-  bool hidePassword = true;
-  var formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Container(
-          width: DeviceDimenssions.width,
-          height: DeviceDimenssions.height,
-          decoration: const BoxDecoration(
-            gradient: LinearGradient(
-              end: Alignment.bottomLeft,
-              begin: Alignment.topRight,
-              colors: [
-                // B675FD
-                Color(0xFFded5e6),
-                Color(0xFFd7ddf5),
-                Color(0xFFb8c0de),
-              ],
-            ),
+    return Container(
+        width: DeviceDimenssions.width,
+        height: DeviceDimenssions.height,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient(
+            end: Alignment.bottomLeft,
+            begin: Alignment.topRight,
+            colors: [
+              // B675FD
+              Color(0xFFded5e6),
+              Color(0xFFd7ddf5),
+              Color(0xFFb8c0de),
+            ],
           ),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Form(
-                key: formKey,
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Image.asset(
-                      'assets/images/logo.png',
-                      width: MediaQuery.of(context).size.width * .45,
-                      height: MediaQuery.of(context).size.width * .4,
-                    ),
-                    Text('Hello Again!',
-                        style: GoogleFonts.bebasNeue(
-                            fontSize: 48,
-                            fontWeight: FontWeight.bold,
-                            color: const Color(0xFF352a49))),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      'Welcome back, you \'ve been missed',
-                      style: GoogleFonts.lato(
-                          color: const Color(0xFF352a49),
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18),
-                    ),
-                    const SizedBox(
-                      height: 50,
-                    ),
-                    CustomFormField(
-                        hint: 'Enter your Email',
-                        textInputType: TextInputType.emailAddress,
-                        controller: emailController,
-                        validator: (value) {
-                          if (value == null || value.trim().isEmpty) {
-                            return 'Please enter your Email';
-                          }
-                          if (!ValidationRegex.emailRegex(value)) {
-                            return 'Please enter Valid Email';
-                          }
-                          return null;
-                        }),
-                    const SizedBox(
-                      height: 12,
-                    ),
-                    StatefulBuilder(
-                      builder: (context, setState) {
-                        return CustomFormField(       
-                          hint: 'Enter your Password',
-                          controller: passwordController,
-                          validator: (value) {
-                            if (value == null || value.trim().isEmpty) {
-                              return 'Please enter your Password';
-                            }
-                            if (!ValidationRegex.passwordRegex(value)) {
-                              return 'Please enter valid Password';
-                            }
-                            return null;
-                          },
-                          isPassword: hidePassword,
-                          textInputType: TextInputType.visiblePassword,
-                          suffix: IconButton(
-                            onPressed: () {
-                              if (hidePassword == false) {
-                                hidePassword = true;
-                              } else {
-                                hidePassword = false;
-                              }
-                              setState(() {});
-                            },
-                            icon: hidePassword
-                                ? Icon(
-                                    Icons.visibility,
-                                    color: Colors.grey[500],
-                                  )
-                                : Icon(Icons.visibility_off,
-                                    color: Colors.grey[500]),
-                          ),
-                        );
-                      },
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(
-                          right: 25, left: 8, top: 8, bottom: 8),
-                      child: Align(
-                        alignment: Alignment.centerRight,
-                        child: InkWell(
-                          onTap: () {},
-                          child: Text(
-                            'Recovery Password',
-                            style: GoogleFonts.lato(
-                                color: const Color(0xFF6a7293),
-                                fontWeight: FontWeight.bold,
-                                fontSize: 16),
-                          ),
-                        ),
+        ),
+        child: Scaffold(
+          backgroundColor: Colors.transparent,
+          body: GetBuilder<LoginController>(
+            init: LoginController(),
+            builder: (controller) =>  Center(
+              child: SingleChildScrollView(
+                child: Form(
+                  key: controller.formKey,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      LoginHeader(),
+                      EmailTextFieldLogin(),
+                      const SizedBox(
+                        height: 12,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 8,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        login();
-                      },
-                      child: Container(
-                        margin: const EdgeInsets.symmetric(horizontal: 25),
-                        width: double.infinity,
-                        height: MediaQuery.of(context).size.height * .07,
-                        padding: const EdgeInsets.all(20),
-                        decoration: BoxDecoration(
-                          color: const Color(0xFFe65a70),
-                          borderRadius: BorderRadius.circular(12),
-                        ),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text('Sign In',
-                                style: GoogleFonts.lato(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16)),
-                            const Icon(
-                              Icons.arrow_forward_sharp,
-                              color: Colors.white,
-                            )
-                          ],
-                        ),
+                      PasswordTextFieldLogin(),
+                      const SizedBox(
+                        height: 8,
                       ),
-                    ),
-                    const SizedBox(
-                      height: 25,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Text(
-                          'Not a member?',
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Color(0xFF352a49)),
-                        ),
-                        InkWell(
-                          onTap: () {
-                            AppRoutes.navigateOffAll(
-                                page: SignUpPage(),
-                                transition: Transition.rightToLeft);
-                          },
-                          child: const Text(
-                            ' Register Now',
-                            style: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Color(0xFF6a7293)),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
+                      RecoveryPassword(),
+                      const SizedBox(
+                        height: 8,
+                      ),
+                      LoginButton(),
+                      const SizedBox(
+                        height: 25,
+                      ),
+                      CreateAccountRow(),
+                    ],
+                  ),
                 ),
               ),
             ),
           ),
         ),
-      ),
     );
   }
 
-  login() {
-    if (!formKey.currentState!.validate()) {
-      return;
-    }
-  }
 }
