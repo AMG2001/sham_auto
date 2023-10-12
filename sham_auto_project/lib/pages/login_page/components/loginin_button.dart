@@ -11,7 +11,9 @@ class LoginButton extends StatelessWidget {
     return GetBuilder<LoginController>(
       builder: (controller) {
         return InkWell(
-          onTap: () {},
+          onTap: () async {
+            await controller.loginUser();
+          },
           child: Container(
             margin: const EdgeInsets.symmetric(horizontal: 25),
             width: double.infinity,
